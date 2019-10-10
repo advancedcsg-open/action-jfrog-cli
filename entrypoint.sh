@@ -14,9 +14,8 @@ else
   then
     sh -c "jfrog rt config --interactive=false --enc-password=true --url=$URL --apikey=$APIKEY"
   elif [ $CRED == "accesstoken" ];
+  then
     sh -c "jfrog rt config --interactive=false --enc-password=true --url=$URL --access-token=$ACCESSTOKEN"
-  else
-    echo "";
   fi
 fi
 
