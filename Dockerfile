@@ -12,7 +12,7 @@ LABEL "com.github.actions.color"="green"
 RUN apk add curl
 
 RUN curl -fL https://getcli.jfrog.io | sh \
-    && sudo mv ./jfrog /usr/bin/
+    && mv ./jfrog /usr/bin/ \
     && chmod +x /usr/bin/jfrog
 
 COPY "entrypoint.sh" "/entrypoint.sh"
