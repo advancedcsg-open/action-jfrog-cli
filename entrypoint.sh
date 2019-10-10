@@ -20,6 +20,9 @@ else
   sh -c "jfrog rt use action-server"
 fi
 
+# Log command for info
+echo "[Info] jfrog rt $*"
+
 # Capture output
 output=$( sh -c "jfrog rt $*" )
 
