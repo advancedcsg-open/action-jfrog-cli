@@ -9,14 +9,15 @@ else
 
   if [ $CRED == "username" ];
   then
-    sh -c "jfrog rt config --interactive=false --enc-password=true --url=$URL --user=$USER --password=$PASSWORD"
+    sh -c "jfrog rt c action-server --interactive=false --url=$URL --user=$USER --password=$PASSWORD"
   elif [ $CRED == "apikey" ];
   then
-    sh -c "jfrog rt config --interactive=false --enc-password=true --url=$URL --apikey=$APIKEY"
+    sh -c "jfrog rt c action-server --interactive=false --url=$URL --apikey=$APIKEY"
   elif [ $CRED == "accesstoken" ];
   then
-    sh -c "jfrog rt config --interactive=false --enc-password=true --url=$URL --access-token=$ACCESSTOKEN"
+    sh -c "jfrog rt c action-server --interactive=false --url=$URL --access-token=$ACCESSTOKEN"
   fi
+  sh -c "jfrog rt use action-server"
 fi
 
 # Capture output
