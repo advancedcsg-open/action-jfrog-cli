@@ -9,6 +9,8 @@ LABEL "com.github.actions.description"="Run jFrog CLI commands"
 LABEL "com.github.actions.icon"="check"
 LABEL "com.github.actions.color"="green"
 
+RUN apk add curl
+
 RUN curl -fL https://getcli.jfrog.io | sh
 
 COPY "entrypoint.sh" "/entrypoint.sh"
