@@ -6,26 +6,21 @@ on:
       - master
 
 jobs:
-
   build:
- 
     runs-on: ubuntu-latest
- 
     steps:
     - uses: actions/checkout@v1
+    - uses: codfish/semantic-release-action@master
+      id: version
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag advancedcsg/action-jfrog-cli:$(date +%s)
+      run: docker build . --file Dockerfile --tag advancedcsg/action-jfrog-cli:latest
     - name: Publish
-      if: success()
+      if: steps.version.outputs.new-release-published == 'true'
       uses: manusa/actions-publish-docker@master
       with:
         name: advancedcsg/action-jfrog-cli
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-        tag script: |
-          return context.ref
-            .replace('refs/heads/', '')
-            .replace('refs/tags/', '')
-            .replace('refs/pull/', '')
-            .replace(/\//g, '_')
-            .replace(/#/g, '');
+        tag: ${{ steps.version.outputs.release-version }}
