@@ -10,13 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - name: build
+      run: docker build . --file Dockerfile --tag advancedcsg/action-jfrog-cli:latest
     - name: create release
       uses: codfish/semantic-release-action@master
+      if: success()
       id: version
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: build
-      run: docker build . --file Dockerfile --tag advancedcsg/action-jfrog-cli:latest
     - name: publish with release tag
       uses: manusa/actions-publish-docker@master
       if: steps.version.outputs.new-release-published == 'true'
