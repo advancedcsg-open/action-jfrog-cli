@@ -17,10 +17,31 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag advancedcsg/action-jfrog-cli:latest
     - name: Publish
-      if: steps.version.outputs.new-release-published == 'true'
       uses: manusa/actions-publish-docker@master
+      if: steps.version.outputs.new-release-published == 'true'
       with:
         name: advancedcsg/action-jfrog-cli
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         tag: ${{ steps.version.outputs.release-version }}
+    - uses: manusa/actions-publish-docker@master
+      if: steps.version.outputs.new-release-published == 'true'
+      with:
+        name: advancedcsg/action-jfrog-cli
+        username: ${{ secrets.DOCKER_HUB_USER }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        tag: ${{ steps.version.outputs.release-major }}
+    - uses: manusa/actions-publish-docker@master
+      if: steps.version.outputs.new-release-published == 'true'
+      with:
+        name: advancedcsg/action-jfrog-cli
+        username: ${{ secrets.DOCKER_HUB_USER }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        tag: ${{ steps.version.outputs.release-major }}.${{ steps.version.outputs.release-minor }}
+    - uses: manusa/actions-publish-docker@master
+      if: steps.version.outputs.new-release-published == 'true'
+      with:
+        name: advancedcsg/action-jfrog-cli
+        username: ${{ secrets.DOCKER_HUB_USER }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        tag: latest
