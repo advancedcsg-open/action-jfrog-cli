@@ -1,8 +1,19 @@
 # GitHub Action for jFrog CLI for Artifactory
 
-Runs all jFrog CLI commands for artifactory
+Runs all jFrog CLI commands for artifactory. This will prefix any arguments passed with `jfrog rt`.
 
 ## Usage
+
+### Inputs
+
+- `url` - *Required* URL to your Artifactor instance
+- `credentials type`- *Required* Should be one of the `username`, `apikey` or `accesstoken`
+- `user`- *Conditionally Required* If `credentials type` is set to `username` then this is required
+- `password`- *Conditionally Required* If `credentials type` is set to `username` then this is required
+- `apikey`- *Conditionally Required* If `credentials type` is set to `apikey` then this is required
+- `access token`- *Conditionally Required* If `credentials type` is set to `accesstoken` then this is required
+
+### Example
 
 ```yaml
 on: push
@@ -17,15 +28,14 @@ jobs:
       run: ./buildmyartifact.sh
     - name: publish to artifactory
       uses: advancedcsg-open/action-jfrog-cli@master
-      env:
-        URL: 'https://company.jfrog.io/'
-        CRED: 'apikey'
-        APIKEY: ${{ secrets.RT_APIKEY }}
       with:
+        url: 'https://company.jfrog.io/'
+        credentials type: 'apikey'
+        apikey: ${{ secrets.RT_APIKEY }}
         args: u "dist/*" "/mu/repo/path/" --recursive=true --build-name=myawesomeapp
 ```
 
-## Secrets
+## Recommended Secrets
 
 You will need the following secrets based on how you authenticate to  Artifactory
 
@@ -40,14 +50,3 @@ You will need the following secrets based on how you authenticate to  Artifactor
 - `RT_ACCESSTOKEN`
 
 **Optionally**, you may want to store you URL as a secret too.
-
-## Environment Variables
-
-- `URL` - *Required* URL to your Artifactor instance
-- `CRED`- *Required* Should be one of the `username`, `apikey` or `accesstoken`
-- `USER`- *Conditionally Required* If `CRED` is set to `username` then this is required
-- `PASSWORD`- *Conditionally Required* If `CRED` is set to `username` then this is required
-- `APIKEY`- *Conditionally Required* If `CRED` is set to `apikey` then this is required
-- `ACCESSTOKEN`- *Conditionally Required* If `CRED` is set to `accesstoken` then this is required
-
-

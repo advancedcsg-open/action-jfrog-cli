@@ -1,6 +1,26 @@
 name: 'jFrog CLI for Artifactory'
 author: 'Advanced Toolchain'
 description: 'Run jFrog CLI commands for Artifactory'
+inputs:
+  url:
+    description: 'URL of Artifactory instance'
+    required: true
+  credentials type:
+    description: 'Type of authentication to use. Must be one of username, apikey or accesstoken. Defaults to apikey'
+    required: true
+    default: apikey
+  user:
+    description: 'Username for Artifactory. Must be supplied when credentials type is username'
+    required: false
+  password:
+    description: 'Password for Artifactory. Must be supplied when credentials type is username'
+    required: false
+  apikey:
+    description: 'Artifactory API Key. Must be supplied when credentials type is apikey'
+    required: false
+  access token:
+    description: 'Artifactory access token. Must be supplied when credentials type is accesstoken'
+    required: false
 branding:
   icon: 'package'
   color: 'green'

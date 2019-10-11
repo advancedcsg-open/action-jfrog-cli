@@ -2,23 +2,20 @@
 
 set -e
 
-if [ -z ${CRED+x} ]; then
-  echo "No credentials specified, ypu may get into errors."
-else
-  echo "Authentication using $CRED";
+echo "Authentication using $INPUT_CREDENTIALS_TYPE";
 
-  if [ $CRED == "username" ];
-  then
-    sh -c "jfrog rt c action-server --interactive=false --url=$URL --user=$USER --password=$PASSWORD"
-  elif [ $CRED == "apikey" ];
-  then
-    sh -c "jfrog rt c action-server --interactive=false --url=$URL --apikey=$APIKEY"
-  elif [ $CRED == "accesstoken" ];
-  then
-    sh -c "jfrog rt c action-server --interactive=false --url=$URL --access-token=$ACCESSTOKEN"
-  fi
-  sh -c "jfrog rt use action-server"
+# Authenticate to the server
+if [ $INPUT_CREDENTIALS_TYPE == "username" ];
+then
+  sh -c "jfrog rt c action-server --interactive=false --url=$INPUT_URL --user=$INPUT_USER --password=$INPUT_PASSWORD"
+elif [ $INPUT_CREDENTIALS_TYPE == "apikey" ];
+then
+  sh -c "jfrog rt c action-server --interactive=false --url=$INPUT_URL --apikey=$INPUT_APIKEY"
+elif [ $INPUT_CREDENTIALS_TYPE == "accesstoken" ];
+then
+  sh -c "jfrog rt c action-server --interactive=false --url=$INPUT_URL --access-token=$INPUT_ACCESS_TOKEN"
 fi
+sh -c "jfrog rt use action-server"
 
 # Log command for info
 echo "[Info] jfrog rt $*"
