@@ -1,9 +1,11 @@
 name: 'jFrog CLI for Artifactory'
+author: 'Advanced Toolchain'
 description: 'Run jFrog CLI commands for Artifactory'
 branding:
-  icon: 'check'
+  icon: 'package'
   color: 'green'
 runs:
   using: 'docker'
   image: 'docker://advancedcsg/action-jfrog-cli:master'
-
+  args:
+    - 'cmd'
