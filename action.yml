@@ -26,6 +26,6 @@ branding:
   color: 'green'
 runs:
   using: 'docker'
-  image: 'docker://advancedcsg/action-jfrog-cli:master'
+  image: 'docker://advancedcsg/action-jfrog-cli:1'
   args:
     - 'cmd'
