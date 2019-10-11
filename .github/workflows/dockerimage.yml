@@ -10,13 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: codfish/semantic-release-action@master
+    - name: create release
+      uses: codfish/semantic-release-action@master
       id: version
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Build the Docker image
+    - name: build
       run: docker build . --file Dockerfile --tag advancedcsg/action-jfrog-cli:latest
-    - name: Publish
+    - name: publish with release tag
       uses: manusa/actions-publish-docker@master
       if: steps.version.outputs.new-release-published == 'true'
       with:
@@ -24,21 +25,24 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         tag: ${{ steps.version.outputs.release-version }}
-    - uses: manusa/actions-publish-docker@master
+    - name: publish with major tag
+      uses: manusa/actions-publish-docker@master
       if: steps.version.outputs.new-release-published == 'true'
       with:
         name: advancedcsg/action-jfrog-cli
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         tag: ${{ steps.version.outputs.release-major }}
-    - uses: manusa/actions-publish-docker@master
+    - name: publissh with major.minor tag
+      uses: manusa/actions-publish-docker@master
       if: steps.version.outputs.new-release-published == 'true'
       with:
         name: advancedcsg/action-jfrog-cli
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         tag: ${{ steps.version.outputs.release-major }}.${{ steps.version.outputs.release-minor }}
-    - uses: manusa/actions-publish-docker@master
+    - name: publish latest tag
+      uses: manusa/actions-publish-docker@master
       if: steps.version.outputs.new-release-published == 'true'
       with:
         name: advancedcsg/action-jfrog-cli
