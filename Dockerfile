@@ -1,6 +1,6 @@
 FROM alpine:3.10
 
-LABEL version="0.0.1"
+LABEL version="1.1.0"
 LABEL repository="https://github.com/advancedcsg-open/action-jfrog-cli"
 LABEL homepage="https://github.com/advancedcsg-open/action-jfrog-cli"
 LABEL maintainer="Advanced Toolchain"

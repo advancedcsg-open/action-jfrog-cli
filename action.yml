@@ -21,6 +21,10 @@ inputs:
   access token:
     description: 'Artifactory access token. Must be supplied when credentials type is accesstoken'
     required: false
+  working directory:
+    description: 'Specify a working directory for the command to run in.'
+    required: false
+    default: .
 branding:
   icon: 'package'
   color: 'green'

@@ -17,6 +17,12 @@ then
 fi
 sh -c "jfrog rt use action-server"
 
+# Set working directory if specified
+if [ $INPUT_WORKING_DIRECTORY != '.' ];
+then
+  cd $INPUT_WORKING_DIRECTORY
+fi
+
 # Log command for info
 echo "[Info] jfrog rt $*"
 
