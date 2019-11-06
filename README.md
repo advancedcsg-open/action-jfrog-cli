@@ -12,6 +12,7 @@ Runs all jFrog CLI commands for artifactory. This will prefix any arguments pass
 - `password`- *Conditionally Required* If `credentials type` is set to `username` then this is required
 - `apikey`- *Conditionally Required* If `credentials type` is set to `apikey` then this is required
 - `access token`- *Conditionally Required* If `credentials type` is set to `accesstoken` then this is required
+- `working directory` - *Optional* Speccify a directory to run the CLI from
 
 ### Example
 
@@ -23,7 +24,7 @@ jobs:
     name: Upload Trigger
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1.2.0
     - name: build
       run: ./buildmyartifact.sh
     - name: publish to artifactory
