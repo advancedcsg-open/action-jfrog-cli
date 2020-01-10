@@ -6,13 +6,13 @@ Runs all jFrog CLI commands for artifactory. This will prefix any arguments pass
 
 ### Inputs
 
-- `url` - *Required* URL to your Artifactor instance
+- `url` - *Required* URL to your Artifactory instance
 - `credentials type`- *Required* Should be one of the `username`, `apikey` or `accesstoken`
 - `user`- *Conditionally Required* If `credentials type` is set to `username` then this is required
 - `password`- *Conditionally Required* If `credentials type` is set to `username` then this is required
 - `apikey`- *Conditionally Required* If `credentials type` is set to `apikey` then this is required
 - `access token`- *Conditionally Required* If `credentials type` is set to `accesstoken` then this is required
-- `working directory` - *Optional* Speccify a directory to run the CLI from
+- `working directory` - *Optional* Specify a directory to run the CLI from
 
 ### Example
 
