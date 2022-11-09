@@ -7,15 +7,15 @@ echo "Authentication using $INPUT_CREDENTIALS_TYPE";
 # Authenticate to the server
 if [ $INPUT_CREDENTIALS_TYPE == "username" ];
 then
-  sh -c "jfrog rt c action-server --interactive=false --url=$INPUT_URL --user=$INPUT_USER --password=$INPUT_PASSWORD"
+  sh -c "jfrog config add action-server --interactive=false --url=$INPUT_URL --user=$INPUT_USER --password=$INPUT_PASSWORD $INPUT_CONFIG_OPTIONS"
 elif [ $INPUT_CREDENTIALS_TYPE == "apikey" ];
 then
-  sh -c "jfrog rt c action-server --interactive=false --url=$INPUT_URL --apikey=$INPUT_APIKEY"
+  sh -c "jfrog config add action-server --interactive=false --url=$INPUT_URL --apikey=$INPUT_APIKEY $INPUT_CONFIG_OPTIONS"
 elif [ $INPUT_CREDENTIALS_TYPE == "accesstoken" ];
 then
-  sh -c "jfrog rt c action-server --interactive=false --url=$INPUT_URL --access-token=$INPUT_ACCESS_TOKEN"
+  sh -c "jfrog config add action-server --interactive=false --url=$INPUT_URL --access-token=$INPUT_ACCESS_TOKEN $INPUT_CONFIG_OPTIONS"
 fi
-sh -c "jfrog rt use action-server"
+sh -c "jfrog config use action-server"
 
 # Set working directory if specified
 if [ $INPUT_WORKING_DIRECTORY != '.' ];

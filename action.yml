@@ -21,6 +21,9 @@ inputs:
   access token:
     description: 'Artifactory access token. Must be supplied when credentials type is accesstoken'
     required: false
+  config options:
+    description: 'Add some option for "Adds a server configuration" command.'
+    require: false
   working directory:
     description: 'Specify a working directory for the command to run in.'
     required: false

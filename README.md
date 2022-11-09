@@ -1,6 +1,6 @@
 # GitHub Action for jFrog CLI for Artifactory
 
-Runs all jFrog CLI commands for artifactory. This will prefix any arguments passed with `jfrog rt`.
+Runs all jFrog CLI v1 commands for artifactory. This will prefix any arguments passed with `jfrog rt`.
 
 ## Usage
 
@@ -12,6 +12,7 @@ Runs all jFrog CLI commands for artifactory. This will prefix any arguments pass
 - `password`- *Conditionally Required* If `credentials type` is set to `username` then this is required
 - `apikey`- *Conditionally Required* If `credentials type` is set to `apikey` then this is required
 - `access token`- *Conditionally Required* If `credentials type` is set to `accesstoken` then this is required
+- `config options` - *Optional* additions option for `rt config add` command 
 - `working directory` - *Optional* Speccify a directory to run the CLI from
 
 ### Example
